@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request intro · roamblr</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fbfaf8] text-[#151515]">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <!-- Navigation -->
+        <nav class="flex flex-wrap items-center justify-between py-4 sm:py-6 border-b border-[#eae7e2] gap-4">
+            <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight hover:opacity-80">
+                roam<span class="text-[#c4511c]">blr</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-8">
+                <a href="about.html" class="text-[#2e2e2e] hover:text-[#c4511c] font-medium text-sm sm:text-base">About</a>
+                <a href="apply.html" class="border border-[#151515] hover:bg-[#151515] hover:text-white transition px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm whitespace-nowrap">
+                    <i class="far fa-paper-plane mr-1"></i> Get listed
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-2xl mx-auto py-8 sm:py-12">
+            <!-- Header -->
+            <div class="text-center mb-8 sm:mb-10">
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Request an intro</h1>
+                <p class="text-base sm:text-lg text-[#5a5a5a]">Connect with a local creator for your next video</p>
+            </div>
+
+            <!-- Creator Summary (will be populated by URL parameter) -->
+            <div class="bg-white rounded-2xl p-6 border border-[#eeebe6] mb-8" id="creator-summary">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-[#e6ddd2] rounded-full flex items-center justify-center text-2xl text-[#7a5a44]" id="creator-avatar">👩🏾</div>
+                    <div>
+                        <h2 class="font-bold text-xl" id="creator-name">Wanjiku M.</h2>
+                        <p class="text-[#b33f0c] text-sm" id="creator-location">Nairobi · 87k subs</p>
+                        <p class="text-sm text-[#6f6f6f] mt-1" id="creator-niche">adventure · street food</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intro Request Form -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-[#eeebe6] shadow-sm">
+                <form id="intro-form" action="https://formspree.io/f/your-form-id" method="POST">
+                    <!-- Hidden fields for tracking -->
+                    <input type="hidden" name="_subject" value="New intro request - roamblr">
+                    <input type="hidden" name="_redirect" value="thanks.html">
+                    <input type="hidden" name="creator_id" id="creator-id-input" value="">
+                    <input type="hidden" name="creator_name" id="creator-name-input" value="">
+                    
+                    <!-- Traveler name -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Your name <span class="text-[#c4511c]">*</span></label>
+                        <input type="text" name="traveler_name" required class="w-full border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white" placeholder="e.g. Mark Thompson">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Email <span class="text-[#c4511c]">*</span></label>
+                        <input type="email" name="traveler_email" required class="w-full border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white" placeholder="you@example.com">
+                        <p class="text-xs text-[#6f6f6f] mt-1">We'll connect you both via email</p>
+                    </div>
+
+                    <!-- YouTube/TikTok/Instagram channel -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Your channel link <span class="text-[#c4511c]">*</span></label>
+                        <input type="url" name="channel_link" required class="w-full border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white" placeholder="youtube.com/@yourchannel or instagram.com/you">
+                    </div>
+
+                    <!-- Subscriber count -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Subscribers/followers <span class="text-[#c4511c]">*</span></label>
+                        <select name="subscriber_count" required class="w-full border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white appearance-none">
+                            <option value="" disabled selected>Select range</option>
+                            <option value="1k-10k">1k - 10k</option>
+                            <option value="10k-50k">10k - 50k</option>
+                            <option value="50k-100k">50k - 100k</option>
+                            <option value="100k-500k">100k - 500k</option>
+                            <option value="500k+">500k+</option>
+                        </select>
+                    </div>
+
+                    <!-- Travel dates -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">When are you visiting? <span class="text-[#c4511c]">*</span></label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="date" name="arrival_date" required class="border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white">
+                            <input type="date" name="departure_date" required class="border border-[#ddd8d0] rounded-full px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white">
+                        </div>
+                    </div>
+
+                    <!-- What you want to film -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">What do you want to film? <span class="text-[#c4511c]">*</span></label>
+                        <textarea name="content_idea" required rows="4" class="w-full border border-[#ddd8d0] rounded-2xl px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white resize-none" placeholder="e.g. Street food tour, nightlife vlog, adventure activities..."></textarea>
+                    </div>
+
+                    <!-- Message to local (optional) -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-semibold mb-2">Message to the creator (optional)</label>
+                        <textarea name="personal_message" rows="3" class="w-full border border-[#ddd8d0] rounded-2xl px-5 py-3 outline-none focus:border-[#c4511c] transition bg-white resize-none" placeholder="Any specific questions or ideas?"></textarea>
+                    </div>
+
+                    <!-- How it works note -->
+                    <div class="bg-[#f9f6f2] rounded-xl p-4 mb-6 text-sm text-[#5a5a5a]">
+                        <i class="fas fa-info-circle text-[#c4511c] mr-2"></i>
+                        <span>We'll connect you both via email within 24 hours. No money changes hands — you trade exposure for local knowledge.</span>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="w-full bg-[#c4511c] hover:bg-[#a33f12] text-white font-semibold py-4 rounded-full transition text-base sm:text-lg">
+                        <i class="fas fa-paper-plane mr-2"></i> Send request
+                    </button>
+
+                    <p class="text-xs text-center text-[#6f6f6f] mt-4">By submitting, you agree to our terms and community guidelines.</p>
+                </form>
+            </div>
+
+            <!-- Back link -->
+            <div class="text-center mt-8">
+                <a href="javascript:history.back()" class="text-sm text-[#6f6f6f] hover:text-[#c4511c]">
+                    <i class="fas fa-arrow-left mr-1"></i> Back to directory
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer (simplified) -->
+        <footer class="border-t border-[#e6e0d8] py-8 mt-12">
+            <div class="flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <a href="index.html" class="text-xl font-bold">roam<span class="text-[#c4511c]">blr</span></a>
+                    <p class="text-sm text-[#6a6a6a] mt-2">© 2026 roamblr</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="about.html" class="text-sm text-[#6a6a6a] hover:text-[#c4511c]">About</a>
+                    <a href="apply.html" class="text-sm text-[#6a6a6a] hover:text-[#c4511c]">Get listed</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Get creator info from URL parameters
+        function loadCreatorFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const creatorId = urlParams.get('creator');
+            
+            // In a real app, this would fetch from a database
+            // For now, we'll simulate with sample data
+            const creators = {
+                'wanjiku': {
+                    name: 'Wanjiku M.',
+                    avatar: '👩🏾',
+                    city: 'Nairobi',
+                    subs: '87k',
+                    niches: ['adventure', 'street food']
+                },
+                'ssemanda': {
+                    name: 'Ssemanda K.',
+                    avatar: '👨🏿',
+                    city: 'Kampala',
+                    subs: '42k',
+                    niches: ['nightlife', 'culture']
+                },
+                'zahara': {
+                    name: 'Zahara A.',
+                    avatar: '👩🏽',
+                    city: 'Mombasa',
+                    subs: '110k',
+                    niches: ['beach', 'Swahili culture']
+                },
+                'okello': {
+                    name: 'Okello J.',
+                    avatar: '👨🏽‍🦱',
+                    city: 'Jinja',
+                    subs: '28k',
+                    niches: ['adventure', 'rafting']
+                }
+            };
+
+            const creator = creators[creatorId];
+            
+            if (creator) {
+                // Update creator summary
+                document.getElementById('creator-avatar').textContent = creator.avatar;
+                document.getElementById('creator-name').textContent = creator.name;
+                document.getElementById('creator-location').textContent = `${creator.city} · ${creator.subs} subs`;
+                document.getElementById('creator-niche').textContent = creator.niches.join(' · ');
+                
+                // Update hidden fields
+                document.getElementById('creator-id-input').value = creatorId;
+                document.getElementById('creator-name-input').value = creator.name;
+                
+                // Update page title
+                document.title = `Request intro to ${creator.name} · roamblr`;
+            } else {
+                // Redirect if no creator specified
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Form submission handling (for demo - in production, Formspree handles it)
+        document.getElementById('intro-form')?.addEventListener('submit', function(e) {
+            // Formspree will handle the actual submission
+            // This is just to show we're working
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            // Don't prevent default - let Formspree do its thing
+        });
+
+        // Load creator on page load
+        window.addEventListener('DOMContentLoaded', loadCreatorFromUrl);
+    </script>
+</body>
+</html>
