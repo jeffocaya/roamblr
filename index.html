@@ -44,14 +44,22 @@
                 The first global network connecting traveling creators with trusted locals.
             </p>
             
-            <!-- Search Bar - mobile stack -->
+            <!-- Search Bar - FIXED VERSION -->
             <div class="max-w-lg mx-auto mb-8 px-4">
-                <div class="flex flex-col sm:flex-row bg-white border border-[#ddd8d0] rounded-full sm:pl-6 p-1 shadow-sm gap-2 sm:gap-0">
-                    <div class="flex items-center pl-4 sm:pl-0">
-                        <i class="fas fa-search text-[#c4511c] mr-2 sm:mr-0"></i>
-                        <input type="text" placeholder="Search any city..." class="flex-1 px-2 sm:px-3 py-3 sm:py-4 outline-none text-sm sm:text-base bg-transparent w-full">
+                <!-- Desktop version (hidden on mobile) -->
+                <div class="hidden sm:flex bg-white border border-[#ddd8d0] rounded-full pl-6 pr-2 py-1 shadow-sm items-center">
+                    <i class="fas fa-search text-[#c4511c]"></i>
+                    <input type="text" placeholder="Search any city... (e.g. Nairobi, Marrakech, London)" class="flex-1 px-3 py-4 outline-none text-base bg-transparent">
+                    <button class="bg-[#151515] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#3a3a3a] transition whitespace-nowrap">Search</button>
+                </div>
+                
+                <!-- Mobile version (simpler, cleaner) -->
+                <div class="sm:hidden flex flex-col gap-3">
+                    <div class="flex items-center bg-white border border-[#ddd8d0] rounded-full px-5 py-3 shadow-sm">
+                        <i class="fas fa-search text-[#c4511c] mr-3"></i>
+                        <input type="text" placeholder="Search city..." class="flex-1 outline-none text-base bg-transparent">
                     </div>
-                    <button class="bg-[#151515] text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-[#3a3a3a] transition text-sm sm:text-base w-full sm:w-auto">Search</button>
+                    <button class="bg-[#151515] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#3a3a3a] transition w-full">Search</button>
                 </div>
             </div>
 
@@ -81,7 +89,7 @@
             <h2 class="text-2xl sm:text-4xl font-bold mb-4 tracking-tight px-2">📍 browse by city</h2>
             
             <!-- City Pills - horizontal scroll on mobile -->
-            <div class="flex gap-2 sm:gap-4 flex-nowrap sm:flex-wrap overflow-x-auto pb-4 sm:pb-0 mb-8 sm:mb-12 px-2 -mx-2 sm:mx-0">
+            <div class="flex gap-2 sm:gap-4 flex-nowrap sm:flex-wrap overflow-x-auto pb-4 sm:pb-0 mb-8 sm:mb-12 px-2 -mx-2 sm:mx-0 scrollbar-hide">
                 <span class="bg-[#151515] text-white border border-[#151515] rounded-full px-4 sm:px-6 py-2 sm:py-3 font-medium shadow-sm flex items-center gap-2 whitespace-nowrap text-sm sm:text-base">
                     <i class="fas fa-flag text-white"></i> All
                 </span>
