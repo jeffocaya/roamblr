@@ -52,12 +52,12 @@
                 </div>
             </div>
 
-            <!-- Intro Request Form -->
+            <!-- Intro Request Form - FIXED WITH CORRECT FORMSPREE URL -->
             <div class="bg-white rounded-2xl p-6 sm:p-8 border border-[#eeebe6] shadow-sm">
-                <form id="intro-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <form id="intro-form" action="https://formspree.io/f/xvzwozpd" method="POST">
                     <!-- Hidden fields for tracking -->
                     <input type="hidden" name="_subject" value="New intro request - roamblr">
-                    <input type="hidden" name="_redirect" value="thanks.html">
+                    <input type="hidden" name="_redirect" value="thanks.html?type=request">
                     <input type="hidden" name="creator_id" id="creator-id-input" value="">
                     <input type="hidden" name="creator_name" id="creator-name-input" value="">
                     
@@ -168,12 +168,33 @@
                     subs: '87k',
                     niches: ['adventure', 'street food']
                 },
+                'kevin': {
+                    name: 'Kevin O.',
+                    avatar: '👨🏾',
+                    city: 'Nairobi',
+                    subs: '124k',
+                    niches: ['tech', 'lifestyle']
+                },
+                'achieng': {
+                    name: 'Achieng P.',
+                    avatar: '👩🏿',
+                    city: 'Nairobi',
+                    subs: '56k',
+                    niches: ['fashion', 'culture']
+                },
                 'ssemanda': {
                     name: 'Ssemanda K.',
                     avatar: '👨🏿',
                     city: 'Kampala',
                     subs: '42k',
                     niches: ['nightlife', 'culture']
+                },
+                'nakato': {
+                    name: 'Nakato R.',
+                    avatar: '👩🏾',
+                    city: 'Kampala',
+                    subs: '38k',
+                    niches: ['food', 'markets']
                 },
                 'zahara': {
                     name: 'Zahara A.',
@@ -188,6 +209,13 @@
                     city: 'Jinja',
                     subs: '28k',
                     niches: ['adventure', 'rafting']
+                },
+                'odhiambo': {
+                    name: 'Odhiambo P.',
+                    avatar: '👨🏾',
+                    city: 'Kisumu',
+                    subs: '15k',
+                    niches: ['fishing', 'nature']
                 }
             };
 
@@ -208,22 +236,19 @@
                 document.title = `Request intro to ${creator.name} · roamblr`;
             } else {
                 // Redirect if no creator specified
-                window.location.href = 'index.html';
+                window.location.href = 'directory.html';
             }
         }
-https://formspree.io/f/mykngqlv
-        // Form submission handling (for demo - in production, Formspree handles it)
+
+        // Form submission handling
         document.getElementById('intro-form')?.addEventListener('submit', function(e) {
-            // Formspree will handle the actual submission
-            // This is just to show we're working
             const submitBtn = this.querySelector('button[type="submit"]');
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-            // Don't prevent default - let Formspree do its thing
+            // Formspree handles the rest
         });
 
         // Load creator on page load
         window.addEventListener('DOMContentLoaded', loadCreatorFromUrl);
     </script>
-    <script src="js/main.js"></script>
 </body>
 </html>
