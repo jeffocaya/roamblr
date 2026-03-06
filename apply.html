@@ -65,11 +65,11 @@
                 </div>
             </div>
 
-            <!-- Application Form -->
+            <!-- Application Form - FIXED WITH CORRECT FORMSPREE URL -->
             <div class="bg-white rounded-2xl p-6 sm:p-8 border border-[#eeebe6] shadow-sm">
-                <form id="apply-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <form id="apply-form" action="https://formspree.io/f/meerjbbd" method="POST">
                     <input type="hidden" name="_subject" value="New local creator application - roamblr">
-                    <input type="hidden" name="_redirect" value="thanks.html">
+                    <input type="hidden" name="_redirect" value="thanks.html?type=apply">
                     
                     <!-- Full name -->
                     <div class="mb-6">
@@ -208,11 +208,11 @@
 
             <!-- Already listed? -->
             <div class="text-center mt-8">
-                <p class="text-sm text-[#6f6f6f]">Already have a profile? <a href="index.html" class="text-[#c4511c] hover:underline">Browse directory</a></p>
+                <p class="text-sm text-[#6f6f6f]">Already have a profile? <a href="directory.html" class="text-[#c4511c] hover:underline">Browse directory</a></p>
             </div>
         </div>
 
-        <!-- Footer (simplified) -->
+        <!-- Footer -->
         <footer class="border-t border-[#e6e0d8] py-8 mt-12">
             <div class="flex flex-col md:flex-row justify-between gap-6">
                 <div>
@@ -254,9 +254,8 @@
         document.getElementById('apply-form')?.addEventListener('submit', function(e) {
             const submitBtn = this.querySelector('button[type="submit"]');
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
-            <form id="apply-form" action="https://formspree.io/f/meerjbbd" method="POST">
-            });
+            // Formspree handles the rest
+        });
     </script>
-    <script src="js/main.js"></script>
 </body>
 </html>
