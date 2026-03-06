@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse cities · roamblr</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fbfaf8] text-[#151515]">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <!-- Navigation -->
+        <nav class="flex flex-wrap items-center justify-between py-4 sm:py-6 border-b border-[#eae7e2] gap-4">
+            <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight hover:opacity-80">
+                roam<span class="text-[#c4511c]">blr</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-8">
+                <a href="about.html" class="text-[#2e2e2e] hover:text-[#c4511c] font-medium text-sm sm:text-base">About</a>
+                <a href="apply.html" class="border border-[#151515] hover:bg-[#151515] hover:text-white transition px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm whitespace-nowrap">
+                    <i class="far fa-paper-plane mr-1"></i> Get listed
+                </a>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <div class="py-10 sm:py-12 text-center max-w-2xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Browse cities</h1>
+            <p class="text-base sm:text-lg text-[#5a5a5a]">Find local creators in these cities — more launching soon</p>
+        </div>
+
+        <!-- Search Bar (filter cities) -->
+        <div class="max-w-md mx-auto mb-10 px-4">
+            <div class="flex items-center bg-white border border-[#ddd8d0] rounded-full px-5 py-3 shadow-sm">
+                <i class="fas fa-search text-[#c4511c] mr-3"></i>
+                <input type="text" id="city-filter" placeholder="Filter cities..." class="w-full outline-none text-base bg-transparent">
+            </div>
+        </div>
+
+        <!-- Cities Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="cities-grid">
+            <!-- Cities will be loaded by JavaScript -->
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-[#f2ede7] rounded-3xl py-10 sm:py-12 px-6 text-center mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold mb-2">Don't see your city?</h2>
+            <p class="text-[#5a5a5a] mb-4">We're expanding fast. Leave your email and we'll notify you when we launch.</p>
+            <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" placeholder="your@email.com" class="flex-1 px-5 py-3 rounded-full border border-[#ddd8d0] outline-none focus:border-[#c4511c]">
+                <button class="bg-[#c4511c] hover:bg-[#a33f12] text-white px-6 py-3 rounded-full font-semibold whitespace-nowrap">Notify me</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-[#e6e0d8] py-8 sm:py-12 mt-12">
+            <div class="flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <a href="index.html" class="text-xl font-bold">roam<span class="text-[#c4511c]">blr</span></a>
+                    <p class="text-sm text-[#6a6a6a] mt-2">© 2026 roamblr</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="about.html" class="text-sm text-[#6a6a6a] hover:text-[#c4511c]">About</a>
+                    <a href="apply.html" class="text-sm text-[#6a6a6a] hover:text-[#c4511c]">Get listed</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // City data (same as in main.js)
+        const cities = [
+            { slug: 'nairobi', name: 'Nairobi', country: 'Kenya', creators: 12, image: '🇰🇪', popular: ['street food', 'safari', 'nightlife'] },
+            { slug: 'kampala', name: 'Kampala', country: 'Uganda', creators: 8, image: '🇺🇬', popular: ['nightlife', 'street food', 'culture'] },
+            { slug: 'mombasa', name: 'Mombasa', country: 'Kenya', creators: 6, image: '🇰🇪', popular: ['beach', 'dhow trips', 'swahili'] },
+            { slug: 'jinja', name: 'Jinja', country: 'Uganda', creators: 4, image: '🇺🇬', popular: ['rafting', 'adventure', 'nile'] },
+            { slug: 'kisumu', name: 'Kisumu', country: 'Kenya', creators: 3, image: '🇰🇪', popular: ['lake victoria', 'fishing', 'beaches'] },
+            // Coming soon (show as disabled or with "notify" option)
+            { slug: 'lagos', name: 'Lagos', country: 'Nigeria', creators: 0, comingSoon: true, image: '🇳🇬' },
+            { slug: 'accra', name: 'Accra', country: 'Ghana', creators: 0, comingSoon: true, image: '🇬🇭' },
+            { slug: 'cape-town', name: 'Cape Town', country: 'South Africa', creators: 0, comingSoon: true, image: '🇿🇦' },
+        ];
+
+        // Render cities grid
+        function renderCities(filterText = '') {
+            const grid = document.getElementById('cities-grid');
+            const filter = filterText.toLowerCase();
+            
+            const filtered = cities.filter(city => 
+                city.name.toLowerCase().includes(filter) || 
+                city.country.toLowerCase().includes(filter)
+            );
+
+            grid.innerHTML = filtered.map(city => {
+                if (city.comingSoon) {
+                    // Coming soon card (not clickable)
+                    return `
+                        <div class="bg-white rounded-2xl p-6 border border-[#eeebe6] opacity-70">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-4xl">${city.image}</span>
+                                <span class="bg-[#f0ebe4] text-xs px-3 py-1 rounded-full">Coming soon</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">${city.name}</h3>
+                            <p class="text-[#5a5a5a] text-sm mb-4">${city.country}</p>
+                            <button onclick="notifyMe('${city.name}')" class="w-full border border-[#c4511c] text-[#c4511c] hover:bg-[#c4511c] hover:text-white py-2 rounded-full text-sm font-semibold transition">
+                                Notify me
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    // Live city (clickable)
+                    return `
+                        <a href="city.html?city=${city.slug}" class="bg-white rounded-2xl p-6 border border-[#eeebe6] hover:border-[#c4511c] transition block">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-4xl">${city.image}</span>
+                                <span class="bg-[#c4511c] text-white text-xs px-3 py-1 rounded-full">${city.creators} creators</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">${city.name}</h3>
+                            <p class="text-[#5a5a5a] text-sm mb-3">${city.country}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${city.popular.map(tag => `<span class="bg-[#f0ebe4] text-xs px-2 py-1 rounded-full">${tag}</span>`).join('')}
+                            </div>
+                        </a>
+                    `;
+                }
+            }).join('');
+        }
+
+        // Filter as user types
+        document.getElementById('city-filter').addEventListener('input', function(e) {
+            renderCities(e.target.value);
+        });
+
+        // Notify me function (for coming soon cities)
+        function notifyMe(cityName) {
+            const email = prompt(`Enter your email to be notified when ${cityName} launches:`);
+            if (email) {
+                // Here you would send to your email list
+                console.log(`Notify me about ${cityName}: ${email}`);
+                alert(`Thanks! We'll let you know when ${cityName} is ready.`);
+            }
+        }
+
+        // Initial render
+        renderCities();
+    </script>
+</body>
+</html>
